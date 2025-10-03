@@ -3,16 +3,17 @@ import { loadRemoteModule } from '@angular-architects/module-federation';
 
 export const routes: Routes = [
     {
-        path: '',
-        loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent)
+        path: "123",
+        redirectTo: "motorbikes-mf",
+        pathMatch: "full"
     },
     {
-        path: 'mf-simulator',
+        path: "motorbikes-mf",
         loadChildren: () => 
             loadRemoteModule({
                 type: 'module',
                 remoteEntry: 'http://localhost:4201/remoteEntry.js',
-                exposedModule: './AppComponent'
-            }).then((m) => m.AppComponent)
+                exposedModule: './motorbikesRoutes'
+            }).then(m => { return m.motorbikesRoutes})
     }
 ];
